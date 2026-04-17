@@ -8,7 +8,7 @@ function Navbar() {
 
     const {openSignIn} = useClerk()
     const {user} = useUser()
-    const { signOut } = useClerk();
+    
 
     const navigate = useNavigate()
 
@@ -25,12 +25,7 @@ function Navbar() {
                 <p> | </p>
                 <p className='max-sm:hidden'>Hi, {user.firstName+" "+user.lastName}</p>
                 <UserButton/>
-                <button
-      onClick={() => signOut({ redirectUrl: "/" })}
-      className="text-red-500 px-4 py-2 rounded-full hover:bg-red-100 transition cursor-pointer"
-    >
-      Logout
-    </button>
+                
 
             </div>
             :<div className='flex gap-4 max-sm:text-xs'>
