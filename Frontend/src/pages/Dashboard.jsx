@@ -1,10 +1,25 @@
 import { assets } from '@/assets/assets'
-import React from 'react'
+import { AppContext } from '@/contexts/AppContext'
+import React, { useContext } from 'react'
 import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 
 function Dashboard() {
 
     const navigate = useNavigate()
+
+    const {companyData} = useContext(AppContext)
+
+    const { setCompanyToken, setCompanyData } = useContext(AppContext);
+
+const handleLogout = () => {
+  localStorage.removeItem("companyToken");   // remove token
+  localStorage.removeItem("companyData");    // optional
+
+  setCompanyToken(null);                     // clear state
+  setCompanyData(null);
+
+  navigate("/");                             // redirect
+};
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -22,11 +37,13 @@ function Dashboard() {
       />
 
       {/* Right Section */}
-      <div className="flex items-center gap-4">
+
+      {companyData && (
+        <div className="flex items-center gap-4">
 
         {/* Welcome Text */}
         <p className="text-gray-600 text-sm sm:text-base max-sm-hidden">
-          Welcome, <span className="font-semibold text-gray-800">Company</span>
+          Welcome, <span className="font-semibold text-gray-800">{companyData.name}</span>
         </p>
 
         {/* Profile + Dropdown */}
@@ -34,7 +51,7 @@ function Dashboard() {
 
           {/* Icon */}
           <img
-            src={assets.company_icon}
+            src={companyData.image}
             alt="company"
             className="w-10 h-10 rounded-full border border-gray-300"
           />
@@ -45,7 +62,9 @@ function Dashboard() {
                           transition-all duration-200">
 
             <ul className="text-sm text-gray-600 list-none">
-              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+              <li 
+              onClick={handleLogout}
+              className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
                 Logout
               </li>
             </ul>
@@ -54,6 +73,8 @@ function Dashboard() {
         </div>
 
       </div>
+      )}
+      
     </div>
   </div>
 
