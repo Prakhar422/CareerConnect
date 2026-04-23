@@ -1,6 +1,6 @@
 import { assets } from '@/assets/assets'
 import { AppContext } from '@/contexts/AppContext'
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 
 function Dashboard() {
@@ -19,7 +19,14 @@ const handleLogout = () => {
   setCompanyData(null);
 
   navigate("/");                             // redirect
-};
+  }
+
+  useEffect(()=>{
+    if (companyData) {
+      navigate('/dashboard/manage-jobs')
+    }
+  },[companyData])
+
 
   return (
     <div className="min-h-screen bg-gray-50">

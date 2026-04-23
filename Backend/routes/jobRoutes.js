@@ -7,6 +7,6 @@ const router = express.Router()
 router.get('/', getJobs)
 
 // Route to get a single job by id
-router.get('/', getJobById)
+router.get('/:id', getJobById)
 
 export default router;
