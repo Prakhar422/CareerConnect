@@ -17,7 +17,7 @@ router.get('/company',protectCompany, getCompanyData)
 //Post job Done
 router.post('/post-job',protectCompany, postJob)
 
-//Get applicants data of company
+//Get applicants data of company Done
 router.get('/applicants',protectCompany, getCompanyJobApplicants)
 
 //Get company job list Done

@@ -27,6 +27,7 @@ const handleLogout = () => {
     }
   },[companyData])
 
+  
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -109,7 +110,7 @@ const handleLogout = () => {
         </ul>
     </div>
 
-    <div>
+    <div className='flex-1 h-full p-2 sm:p-5'>
         <Outlet/>
     </div>
 
