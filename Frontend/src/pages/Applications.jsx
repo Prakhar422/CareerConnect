@@ -1,6 +1,6 @@
 import { assets, jobsApplied } from '@/assets/assets'
 import Navbar from '@/components/Navbar'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import Footer from '@/components/Footer';
@@ -16,10 +16,12 @@ function Applications() {
     const {user} = useUser()
     const {getToken} = useAuth()
 
+
+
     const [isEdit, setIsEdit] = useState(false)
     const [resume, setResume] = useState(null)
 
-    const {backendUrl, userData, userApplication, fetchUserData} = useContext(AppContext)
+    const {backendUrl, userData, userApplication, fetchUserData, fetchUserApplications} = useContext(AppContext)
 
     const updateResume = async () => {
         
@@ -29,7 +31,7 @@ function Applications() {
 
             const token = await getToken()
 
-            const {data} = await axios.post(backendUrl + '/api/user/update-resume',
+            const {data} = await axios.post(backendUrl + '/api/users/update-resume',
                 formData,
                 {headers:{Authorization: `Bearer ${token}`}}
             )
@@ -49,6 +51,10 @@ function Applications() {
         setIsEdit(false)
         setResume(null)
     }
+
+    useEffect(()=>{
+        fetchUserApplications()
+    },[])
 
   return (
     <>
@@ -91,14 +97,14 @@ function Applications() {
                 </tr>
             </thead>
             <tbody>
-                {jobsApplied.map((job, index)=> true ? (
+                {userApplication.map((job, index)=> true ? (
                     <tr key={index}>
                         <td className='py-3 px-4 flex items-center gap-2 border-b'>
-                            <img className='w-8 h-8' src={job.logo} alt="" />
-                            {job.company}
+                            <img className='w-8 h-8' src={job.companyId.image} alt="" />
+                            {job.companyId.name}
                             </td>
-                        <td className='py-2 px-4 border-b'>{job.title}</td>
-                        <td className='py-2 px-4 border-b max-sm:hidden'>{job.location}</td>
+                        <td className='py-2 px-4 border-b'>{job.jobId.title}</td>
+                        <td className='py-2 px-4 border-b max-sm:hidden'>{job.jobId.location}</td>
                         <td className='py-2 px-4 border-b max-sm:hidden'>{dayjs(job.date).format('ll')}</td>
                         <td className='py-2 px-4 border-b'>
                             <span className={`${job.status === "Accepted" ? 'bg-green-100' : job.status === 'Rejected' ? 'bg-red-100' : 'bg-blue-100'} px-4 py-1.5 rounded`}>

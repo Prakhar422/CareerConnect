@@ -9,10 +9,10 @@ const router = express.Router()
 router.get('/user',protectUser, getUserData)
 
 //Apply for job Done
-router.post('/apply', applyForJob)
+router.post('/apply',protectUser, applyForJob)
 
 //Get applied jobs data
-router.get('/applications', getUserJobApplications)
+router.get('/applications',protectUser, getUserJobApplications)
 
 //Update user profile(Resume)
 router.post('/update-resume',protectUser, upload.single('resume'), updateUserResume)
