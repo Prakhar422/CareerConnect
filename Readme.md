@@ -71,6 +71,17 @@ CareerConnect/
 
 ---
 
+## 📘 Additional Documentation
+
+Detailed documentation for each part of the project is available:
+
+* 📂 **Frontend** → See `Frontend/README.md`
+* ⚙️ **Backend** → See `Backend/README.md`
+
+These files contain setup instructions, dependencies, and detailed explanations specific to each module.
+
+---
+
 ## ⚙️ Environment Variables
 
 ### Frontend
