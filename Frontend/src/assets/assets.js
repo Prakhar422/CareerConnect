@@ -33,6 +33,9 @@ import lock_icon from './lock_icon.svg'
 import samsung_logo from './samsung_logo.png'
 import adobe_logo from './adobe_logo.png'
 import amazon_logo from './amazon_logo.png'
+import deloitte_logo from './deloitte_logo.jpg'
+import google_logo from './google_logo.png'
+import meta_logo from "./meta_logo.png"
 
 
 export const assets = {
@@ -71,6 +74,9 @@ export const assets = {
     samsung_logo,
     adobe_logo,
     amazon_logo,
+    deloitte_logo,
+    meta_logo,
+    google_logo,
     
 }
 

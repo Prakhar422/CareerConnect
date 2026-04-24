@@ -18,6 +18,8 @@ function Hero() {
       
         
     }
+    console.log(assets);
+    
 
   return (
     <div className='container 2xl:px-20 mx-auto my-10'>
@@ -56,6 +58,8 @@ function Hero() {
             <img className='h-6' src={assets.adobe_logo} alt="" />
             <img className='h-6' src={assets.google_logo} alt="" />
             <img className='h-6' src={assets.meta_logo} alt="" />
+            
+            
         </div>
       </div>
     </div>
